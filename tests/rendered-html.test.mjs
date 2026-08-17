@@ -28,8 +28,10 @@ test("contains the requested quiz and sharing features", async () => {
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.equal((page.match(/id: \d+,/g) ?? []).length, 20);
   assert.match(page, /localStorage/);
-  assert.match(page, /social-plugins\.line\.me\/lineit\/share/);
-  assert.match(page, /Discordにコピー/);
+  assert.match(page, /setSelected\(index\)/);
+  assert.match(page, /回答の振り返り/);
+  assert.match(page, /正解：/);
+  assert.doesNotMatch(page, /share-box/);
   assert.match(page, /高難度/);
   assert.match(layout, /lang="ja"/);
 });
